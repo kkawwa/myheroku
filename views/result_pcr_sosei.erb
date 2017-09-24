@@ -1,0 +1,195 @@
+<html>
+	<body>
+		<h1>PCR 組成計算</h1>
+		<form action="result_pcr_sosei" method="POST">
+			<div>
+				<%= "<input name='one_sample' value='#{@one_sample}'>" %>
+				<label>μl ずつのPCR</label>
+			</div>
+
+			<div>
+				<%= "<input name='sample_su' value='#{@sample_su}'>" %>
+				<label> 　: サンプル数</label>
+			</div>
+
+			<div>
+				<%= "<input name='temp_ryou' value='#{@temp_ryou}'>" %>
+				<label>　: 1つのサンプルに入れる鋳型の量 (μl)</label>
+			</div>
+
+			<div><br><br></div>
+
+			<div>
+				<%= "<input name='per_sosei' value='#{@per_sosei}'>" %>
+				<label>μl 分の組成↓↓↓</label>
+			</div>
+
+			<div><p></p></div>
+
+			<div>
+				<%= "<input name='buffer' value='#{@buffer}'>" %>
+				<label>　: buffer</label>
+			</div>
+
+			<div>
+				<%= "<input name='dNTPs' value='#{@dNTPs}'>" %>
+				<label>　: dNTPs</label>
+			</div>
+
+			<div>
+				<%= "<input name='magnesium' value='#{@magnesium}'>" %>
+				<label>　: magnesium</label>
+			</div>
+
+			<div>
+				<%= "<input name='sonota' value='#{@sonota}'>" %>
+				<label>　: その他</label>
+			</div>
+
+			<div>
+				<%= "<input name='primer_f' value='#{@primer_f}'>" %>
+				<label>　: primer F</label>
+			</div>
+
+			<div>
+				<%= "<input name='primer_r' value='#{@primer_r}'>" %>
+				<label>　: primer R</label>
+			</div>
+
+			<div>
+				<%= "<input name='kouso' value='#{@kouso}'>" %>
+				<label>　: 酵素</label>
+			</div>
+
+			<div><p></p></div>
+
+			<div>
+				<input type="submit" value="実行">
+			</div>
+		</form>
+
+
+		<div><br><%= "#{@one_sample} μl あたり" %></div>
+
+		<table border="1">
+			<tr>
+				<td>buffer</td>
+				<td><%= "#{@calc_buffer}" %></td>
+			</tr>
+
+			<tr>
+				<td>dNTPs</td>
+				<td><%= "#{@calc_dNTPs}" %></td>
+			</tr>
+
+			<tr>
+				<td>magnesium</td>
+				<td><%= "#{@calc_magnesium}" %></td>
+			</tr>
+
+			<tr>
+				<td>その他</td>
+				<td><%= "#{@calc_sonota}" %></td>
+			</tr>
+
+			<tr>
+				<td>primer F</td>
+				<td><%= "#{@calc_primer_f}" %></td>
+			</tr>
+
+			<tr>
+				<td>primer R</td>
+				<td><%= "#{@calc_primer_r}" %></td>
+			</tr>
+
+			<tr>
+				<td>鋳型</td>
+				<td><%= "#{@temp_ryou}" %></td>
+			</tr>
+
+			<tr>
+				<td>酵素</td>
+				<td><%= "#{@calc_kouso}" %></td>
+			</tr>
+
+			<tr>
+				<td>水</td>
+				<td><%= "#{@water}" %></td>
+			</tr>
+		</table>
+
+
+		<div><br><%= "#{@one_sample*@sample_su} μl あたり" %></div>
+
+		<table border="1">
+			<tr>
+				<td>buffer</td>
+				<td><%= "#{@calc_buffer*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>dNTPs</td>
+				<td><%= "#{@calc_dNTPs*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>magnesium</td>
+				<td><%= "#{@calc_magnesium*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>その他</td>
+				<td><%= "#{@calc_sonota*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>primer F</td>
+				<td><%= "#{@calc_primer_f*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>primer R</td>
+				<td><%= "#{@calc_primer_r*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>鋳型</td>
+				<td><%= "#{@temp_ryou*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>酵素</td>
+				<td><%= "#{@calc_kouso*@sample_su}" %></td>
+			</tr>
+
+			<tr>
+				<td>水</td>
+				<td><%= "#{@water*@sample_su}" %></td>
+			</tr>
+		</table>
+
+
+
+
+		<div><br><a href="/">home へ</a></div>
+
+		<div><p></p></div>
+		<!-- admax -->
+		<script src="//adm.shinobi.jp/s/11131e309c1ee566991d1213db653a11"></script>
+		<!-- admax -->
+	    <script type="text/javascript">
+	    //<![CDATA[
+	    (function(d) {
+	      var sc=d.createElement("script"),
+	          ins=d.getElementsByTagName("script")[0];
+	      sc.type="text/javascript";
+	      sc.src=("https:"==d.location.protocol?"https://":"http://") + "code.analysis.shinobi.jp" + "/ninja_ar/NewScript?id=00416831&hash=2b319730&zone=36";
+	      sc.async=true;
+	      ins.parentNode.insertBefore(sc, ins);
+	    })(document);
+	    //]]>
+	    </script>
+	    <!-- /NINJA ANALYZE -->
+		
+	</body>
+</html>

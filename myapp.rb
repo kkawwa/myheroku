@@ -84,6 +84,10 @@ get '/aa_trans' do
 	erb :aa_trans
 end
 
+get '/pcr_sosei' do
+	erb :pcr_sosei
+end
+
 
 post '/na_comp' do
 	@na = params[:na]
@@ -96,6 +100,38 @@ post '/aa_trans' do
 	@trans_na = translate(params[:na])
 	erb :aa_trans
 end
+
+def pcr_calc(st,per_sosei,one_sample)
+	st/per_sosei*one_sample
+end
+
+post '/result_pcr_sosei' do
+	@one_sample = params[:one_sample].to_f
+	@sample_su = params[:sample_su].to_f
+	@temp_ryou = params[:temp_ryou].to_f
+	@per_sosei = params[:per_sosei].to_f
+	@buffer = params[:buffer].to_f
+	@dNTPs = params[:dNTPs].to_f
+	@magnesium = params[:magnesium].to_f
+	@sonota = params[:sonota].to_f
+	@primer_f = params[:primer_f].to_f
+	@primer_r = params[:primer_r].to_f
+	@kouso = params[:kouso].to_f
+
+	@calc_buffer = pcr_calc(@buffer,@per_sosei,@one_sample)
+	@calc_dNTPs = pcr_calc(@dNTPs,@per_sosei,@one_sample)
+	@calc_magnesium = pcr_calc(@magnesium,@per_sosei,@one_sample)
+	@calc_sonota = pcr_calc(@sonota,@per_sosei,@one_sample)
+	@calc_primer_f = pcr_calc(@primer_f,@per_sosei,@one_sample)
+	@calc_primer_r = pcr_calc(@primer_r,@per_sosei,@one_sample)
+	@calc_kouso = pcr_calc(@kouso,@per_sosei,@one_sample)
+
+	@water = @one_sample - @calc_buffer - @calc_dNTPs - @calc_magnesium - @calc_sonota - @calc_primer_f - @calc_primer_r - @calc_kouso - @temp_ryou
+
+	erb :result_pcr_sosei
+end
+
+
 
 
 
