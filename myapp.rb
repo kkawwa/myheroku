@@ -34,6 +34,16 @@ require "sinatra/reloader" if development?
 #end
 
 
+
+error do |e|
+  status 500
+  # これでもできるけど
+  #body env['sinatra.error'].message
+  # これでもよい
+  body e.message
+end
+
+
  
 get '/' do
 	erb :index
