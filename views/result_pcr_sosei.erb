@@ -1,6 +1,25 @@
 <html>
 	<body>
 		<h1>PCR 組成計算</h1>
+
+		<form action="r" method="GET">
+			<input type="submit" value="r">
+		</form>
+
+		<form action="ex" method="GET">
+			<input type="submit" value="ex">
+		</form>
+
+		<form action="ps" method="GET">
+			<input type="submit" value="Prime star">
+		</form>
+
+		<form action="kod" method="GET">
+			<input type="submit" value="kod + neo">
+		</form>
+
+
+
 		<form action="result_pcr_sosei" method="POST">
 			<div>
 				<%= "<input name='one_sample' value='#{@one_sample}'>" %>

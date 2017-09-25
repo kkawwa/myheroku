@@ -105,7 +105,79 @@ def pcr_calc(st,per_sosei,one_sample)
 	st/per_sosei*one_sample
 end
 
+get '/r' do
+	
+	@one_sample = 25
+	@sample_su = 1
+	@temp_ryou = 1
+	@per_sosei = 100
+	@buffer = 10
+	@dNTPs = 8
+	@magnesium = 6
+	@sonota = 0
+	@primer_f = 2
+	@primer_r = 2
+	@kouso = 1
+
+	erb :kind_pcr_sosei
+end
+
+get '/ex' do
+	
+	@one_sample = 25
+	@sample_su = 1
+	@temp_ryou = 1
+	@per_sosei = 100
+	@buffer = 10
+	@dNTPs = 8
+	@magnesium = 0
+	@sonota = 0
+	@primer_f = 2
+	@primer_r = 2
+	@kouso = 0.125
+
+	erb :kind_pcr_sosei
+end
+
+get '/ps' do
+	
+	@one_sample = 25
+	@sample_su = 1
+	@temp_ryou = 1
+	@per_sosei = 100
+	@buffer = 20
+	@dNTPs = 8
+	@magnesium = 0
+	@sonota = 0
+	@primer_f = 2
+	@primer_r = 2
+	@kouso = 0.25
+
+	erb :kind_pcr_sosei
+end
+
+get '/kod' do
+	
+	@one_sample = 25
+	@sample_su = 1
+	@temp_ryou = 1
+	@per_sosei = 50
+	@buffer = 5
+	@dNTPs = 5
+	@magnesium = 3
+	@sonota = 0
+	@primer_f = 1.5
+	@primer_r = 1.5
+	@kouso = 1
+
+	erb :kind_pcr_sosei
+end
+
+
+
+
 post '/result_pcr_sosei' do
+
 	@one_sample = params[:one_sample].to_f
 	@sample_su = params[:sample_su].to_f
 	@temp_ryou = params[:temp_ryou].to_f
