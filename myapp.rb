@@ -61,6 +61,20 @@ def translate(st)
 
 end
 
+def bunshi_calc(st)
+	arr_aa = ["A", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "Y", "*"]
+	arr_ryou = [89.09,121.16,133.10,147.13,165.19,75.07,155.15,131.17,146.19,131.17,149.21,132.12,115.13,146.15,174.20,105.09,119.12,117.15,204.23,181.19]
+
+	sum = 0.0
+
+	for i in 0...st.size
+		break if st[i] == "*"
+		sum += arr_ryou[arr_aa.index(st[i])]
+	end
+
+	return sum -= 18.0*(i - 1)
+end
+
 
 error do |e|
   status 500
@@ -98,6 +112,7 @@ end
 post '/aa_trans' do
 	@na = params[:na]
 	@trans_na = translate(params[:na])
+	@bunshiryou = bunshi_calc(@trans_na)
 	erb :aa_trans
 end
 
