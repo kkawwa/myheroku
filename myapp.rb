@@ -35,7 +35,18 @@ require "sinatra/reloader" if development?
 
 
 def translate(st)
-	st.upcase!.gsub("\n","").gsub(" ","")
+	st.upcase!
+
+	arr_atgc = ["A","T","G","C"]
+
+	new_st = ""
+	for i in 0...st.size
+		if arr_atgc.include?(st[i])
+			new_st += st[i]
+		end
+	end
+	st = new_st
+
 	arr_aa = ["A", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "Y", "*"]
 	arr_na = [["GCT", "GCC", "GCA", "GCG"], ["TGT", "TGC"], ["GAT", "GAC"], ["GAA", "GAG"], ["TTT", "TTC"], ["GGT", "GGC", "GGA", "GGG"], ["CAT", "CAC"], ["ATT", "ATC", "ATA"], ["AAA", "AAG"], ["TTA", "TTG", "CTT", "CTC", "CTA", "CTG"], ["ATG"], ["AAT", "AAC"], ["CCT", "CCC", "CCA", "CCG"], ["CAA", "CAG"], ["CGT", "CGC", "CGA", "CGG", "AGA", "AGG"], ["TCT", "TCC", "TCA", "TCG", "AGT", "AGC"], ["ACT", "ACC", "ACA", "ACG"], ["GTT", "GTC", "GTA", "GTG"], ["TGG"], ["TAT", "TAC"], ["TAG", "TGA", "TAA"]]
 
@@ -57,7 +68,7 @@ def translate(st)
 
 	end
 
-	return aa
+	return [st,aa]
 
 end
 
@@ -110,8 +121,8 @@ post '/na_comp' do
 end
 
 post '/aa_trans' do
-	@na = params[:na]
-	@trans_na = translate(params[:na])
+	@na = translate(params[:na])[0]
+	@trans_na = translate(params[:na])[1]
 	@bunshiryou = bunshi_calc(@trans_na)
 	erb :aa_trans
 end
