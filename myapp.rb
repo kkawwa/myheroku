@@ -111,7 +111,7 @@ end
 
 post '/aa_trans' do
 	@na = params[:na]
-	@trans_na = translate(params[:na]).gsub("\n","")
+	@trans_na = translate(params[:na]).gsub("\n","").gsub(" ","")
 	@bunshiryou = bunshi_calc(@trans_na)
 	erb :aa_trans
 end
