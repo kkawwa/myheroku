@@ -125,6 +125,86 @@ get '/pcr_sosei' do
 end
 
 
+get '/eurofin_calc' do
+	@hani_temp_ryou = "範囲 ? ng"
+	@aim_temp_ryou = ""
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_plasmid' do
+	@hani_temp_ryou = "範囲 450-900 ng"
+	@aim_temp_ryou = 900
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_150_200' do
+	@hani_temp_ryou = "範囲 3-9 ng"
+	@aim_temp_ryou = 9
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_200_500' do
+	@hani_temp_ryou = "範囲 9-30 ng"
+	@aim_temp_ryou = 30
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_500_1000' do
+	@hani_temp_ryou = "範囲 15-60 ng"
+	@aim_temp_ryou = 60
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_1000_2000' do
+	@hani_temp_ryou = "範囲 30-120 ng"
+	@aim_temp_ryou = 120
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+get '/e_2000' do
+	@hani_temp_ryou = "範囲 60-150 ng"
+	@aim_temp_ryou = 150
+	@now_primer_noudo = 100
+
+	erb :eurofin_calc
+end
+
+post '/result_eurofin_calc' do
+	@hani_temp_ryou = @hani_temp_ryou
+	@hani_temp_ryou = params[:hani_temp_ryou]
+	@now_temp_noudo = params[:now_temp_noudo]
+	@aim_temp_ryou = params[:aim_temp_ryou]
+	@now_primer_noudo = params[:now_primer_noudo]
+
+	arr_temp_noud = params[:now_temp_noudo].split(",")
+	arr_temp = params[:now_temp_noudo].split(",").map { |e| params[:aim_temp_ryou].to_f/e.to_f }# params[:aim_temp_ryou].to_f/params[:now_temp_noudo].to_f
+	@primer = 9.6*21.0/params[:now_primer_noudo].to_f
+#9.6*21 = 100*x
+
+	@arr_result_temp_water = [["現在の鋳型の濃度 (ng/μl)","鋳型の量 (μl)", "プライマーの量 (μl)", "水の量 (μl)"]]
+	n = 0
+	arr_temp.each do |a|
+		@arr_result_temp_water << [arr_temp_noud[n], a.round(3), @primer.round(3), (21.0 - a - @primer).round(3)]
+		n += 1
+	end
+
+	erb :result_eurofin_calc
+end
+
+
+
 post '/na_comp' do
 	@na = complement(params[:na])[0]
 	@comp_na = complement(params[:na])[1]
