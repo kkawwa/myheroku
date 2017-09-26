@@ -1,0 +1,101 @@
+<html>
+	<html>
+	  <head> 
+	    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-1352714621320494",
+	    enable_page_level_ads: true
+	  });
+	</script>
+	  </head>
+	<body>
+		<h1>ユーロフィン シーケンス用 計算</h1>
+
+		<div>初めに、サンプルの長さをお選び下さい。</div>
+		<div>　</div>
+
+		<form action="e_plasmid" method="GET">
+			<input type="submit" value="プラスミド">
+		</form>
+
+		<form action="e_150_200" method="GET">
+			<input type="submit" value="150-200 bp">
+		</form>
+
+		<form action="e_200_500" method="GET">
+			<input type="submit" value="200-500 bp">
+		</form>
+
+		<form action="e_500_1000" method="GET">
+			<input type="submit" value="500-1000 bp">
+		</form>
+
+		<form action="e_1000_2000" method="GET">
+			<input type="submit" value="1000-2000 bp">
+		</form>
+
+		<form action="e_2000" method="GET">
+			<input type="submit" value=">2000 bp">
+		</form>
+
+
+
+		<div><br>鋳型</div>
+		<form action="result_eurofin_calc" method="POST">
+			<div>
+				<%= "<input name='hani_temp_ryou' value='#{@hani_temp_ryou}'>" %>
+			</div>
+
+			<div>
+				<%= "<input name='aim_temp_ryou' value='#{@aim_temp_ryou}'>" %>
+				<label>　: 目指す鋳型の量 (ng)</label>
+			</div>
+
+			<div>
+				<%= "<input name='now_temp_noudo' value='#{@now_temp_noudo}'>" %>
+				<label> 　: 現在の鋳型の濃度 (ng/μl)</label>
+			</div>
+			<div>↑↑↑半角コンマ (,) で複数入力できます。(例: 50,120,180)</div>
+
+			<div><br><br></div>
+
+			<div>プライマー 9.6 pmol</div>
+			<div>
+				<input name="now_primer_noudo" value=<%= "#{@now_primer_noudo}" %>>
+				<label> 　: 現在のプライマーの濃度 (pmol)</label>
+			</div>
+
+			<div><p></p></div>
+
+			<div>
+				<input type="submit" value="実行">
+			</div>
+		</form>
+
+		<div>　</div>
+
+		<h2>計算結果</h2>
+		<table border=1>
+
+			<% 4.times do |n| %>
+				<tr>
+					<% for i in 0...@arr_result_temp_water.size %>
+						<%= "<th>#{@arr_result_temp_water[i][n]}</th>" %>
+					<% end %>
+				</tr>
+			<% end %>
+		</table>
+
+
+
+		<div><br><a href="/">home へ</a></div>
+
+		<div><p></p></div>
+		<!-- admax -->
+		<script src="//adm.shinobi.jp/s/11131e309c1ee566991d1213db653a11"></script>
+		<!-- admax -->
+	    
+		
+	</body>
+</html>
