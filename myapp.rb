@@ -4,6 +4,17 @@ require "sinatra/reloader" if development?
 
 #class String
 	def complement(st)
+		#arr_atgc = ["A","T","G","C"]
+
+		new_st = ""
+		for i in 0...st.size
+			if st[i] =~ /\w/
+				new_st += st[i]
+			end
+		end
+		st = new_st
+
+
 		new_st = ""
 
 		for i in 0...st.size
@@ -29,7 +40,7 @@ require "sinatra/reloader" if development?
 			end
 		end
 
-		new_st.reverse!
+		[st,new_st.reverse!]
 	end
 #end
 
@@ -115,8 +126,8 @@ end
 
 
 post '/na_comp' do
-	@na = params[:na]
-	@comp_na = complement(params[:na])
+	@na = complement(params[:na])[0]
+	@comp_na = complement(params[:na])[1]
 	erb :na_comp
 end
 
