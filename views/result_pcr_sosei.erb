@@ -17,23 +17,24 @@
 
 		<div>　</div>
 
-		<form action="r" method="GET">
+		<form action="r" method="GET" style="display:inline; padding-left:2px">
 			<input type="submit" value="r">
 		</form>
 
-		<form action="ex" method="GET">
+		<form action="ex" method="GET" style="display:inline; padding-left:2px">
 			<input type="submit" value="ex">
 		</form>
 
-		<form action="ps" method="GET">
+		<form action="ps" method="GET" style="display:inline; padding-left:2px">
 			<input type="submit" value="Prime star">
 		</form>
 
-		<form action="kod" method="GET">
+		<form action="kod" method="GET" style="display:inline; padding-left:2px">
 			<input type="submit" value="kod + neo">
 		</form>
 
 
+		<div>　</div>
 
 		<form action="result_pcr_sosei" method="POST">
 			<div>
@@ -102,110 +103,117 @@
 			</div>
 		</form>
 
-
-		<div><br><%= "#{@one_sample} μl あたり" %></div>
-
-		<table border="1">
+		<table>
 			<tr>
-				<td>buffer</td>
-				<td><%= "#{@calc_buffer}" %></td>
+				<td><div><%= "#{@one_sample} μl あたり" %></div></td>
+				<td><div style="padding-left:10px"><%= "#{@one_sample*@sample_su} μl あたり" %></div></td>
 			</tr>
 
 			<tr>
-				<td>dNTPs</td>
-				<td><%= "#{@calc_dNTPs}" %></td>
-			</tr>
+				<td>
+				<table border="1">
+					<tr>
+						<td>buffer</td>
+						<td><%= "#{@calc_buffer}" %></td>
+					</tr>
 
-			<tr>
-				<td>magnesium</td>
-				<td><%= "#{@calc_magnesium}" %></td>
-			</tr>
+					<tr>
+						<td>dNTPs</td>
+						<td><%= "#{@calc_dNTPs}" %></td>
+					</tr>
 
-			<tr>
-				<td>その他</td>
-				<td><%= "#{@calc_sonota}" %></td>
-			</tr>
+					<tr>
+						<td>magnesium</td>
+						<td><%= "#{@calc_magnesium}" %></td>
+					</tr>
 
-			<tr>
-				<td>primer F</td>
-				<td><%= "#{@calc_primer_f}" %></td>
-			</tr>
+					<tr>
+						<td>その他</td>
+						<td><%= "#{@calc_sonota}" %></td>
+					</tr>
 
-			<tr>
-				<td>primer R</td>
-				<td><%= "#{@calc_primer_r}" %></td>
-			</tr>
+					<tr>
+						<td>primer F</td>
+						<td><%= "#{@calc_primer_f}" %></td>
+					</tr>
 
-			<tr>
-				<td>鋳型</td>
-				<td><%= "#{@temp_ryou}" %></td>
-			</tr>
+					<tr>
+						<td>primer R</td>
+						<td><%= "#{@calc_primer_r}" %></td>
+					</tr>
 
-			<tr>
-				<td>酵素</td>
-				<td><%= "#{@calc_kouso}" %></td>
-			</tr>
+					<tr>
+						<td>鋳型</td>
+						<td><%= "#{@temp_ryou}" %></td>
+					</tr>
 
-			<tr>
-				<td>水</td>
-				<td><%= "#{@water}" %></td>
+					<tr>
+						<td>酵素</td>
+						<td><%= "#{@calc_kouso}" %></td>
+					</tr>
+
+					<tr>
+						<td>水</td>
+						<td><%= "#{@water}" %></td>
+					</tr>
+				</table>
+				</td>
+			
+				<td style="padding-left:10px">
+					<table border="1">
+						<tr>
+							<td>buffer</td>
+							<td><%= "#{@calc_buffer*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>dNTPs</td>
+							<td><%= "#{@calc_dNTPs*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>magnesium</td>
+							<td><%= "#{@calc_magnesium*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>その他</td>
+							<td><%= "#{@calc_sonota*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>primer F</td>
+							<td><%= "#{@calc_primer_f*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>primer R</td>
+							<td><%= "#{@calc_primer_r*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>鋳型</td>
+							<td><%= "#{@temp_ryou*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>酵素</td>
+							<td><%= "#{@calc_kouso*@sample_su}" %></td>
+						</tr>
+
+						<tr>
+							<td>水</td>
+							<td><%= "#{@water*@sample_su}" %></td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
 
 
-		<div><br><%= "#{@one_sample*@sample_su} μl あたり" %></div>
-
-		<table border="1">
-			<tr>
-				<td>buffer</td>
-				<td><%= "#{@calc_buffer*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>dNTPs</td>
-				<td><%= "#{@calc_dNTPs*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>magnesium</td>
-				<td><%= "#{@calc_magnesium*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>その他</td>
-				<td><%= "#{@calc_sonota*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>primer F</td>
-				<td><%= "#{@calc_primer_f*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>primer R</td>
-				<td><%= "#{@calc_primer_r*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>鋳型</td>
-				<td><%= "#{@temp_ryou*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>酵素</td>
-				<td><%= "#{@calc_kouso*@sample_su}" %></td>
-			</tr>
-
-			<tr>
-				<td>水</td>
-				<td><%= "#{@water*@sample_su}" %></td>
-			</tr>
-		</table>
 
 
-
-
-		<div><br><a href="/">home へ</a></div>
+		<div style="clear:left"><br><a href="/">home へ</a></div>
 
 		<div><p></p></div>
 	    
