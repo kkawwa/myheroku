@@ -109,6 +109,17 @@ end
 
  
 get '/' do
+	@file_data_i = 0
+	File.open('db_text/count.text') do |file|
+		file.each_line do |labmen|
+			@file_data_i = labmen.to_i
+	    end
+	end
+
+	File.open("db_text/count.text", "w") do |f| 
+	  f.puts(@file_data_i += 1)
+	end
+
 	erb :index
 end
 
